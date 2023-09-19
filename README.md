@@ -18,22 +18,46 @@ The `SearchBar` component is a reusable input field component for search functio
 ## Usage
 
 ```jsx
+import React, { useState } from 'react';
 import SearchBar from './path/to/SearchBar';
 
 function App() {
-  const suggestions = ['Apple', 'Banana', 'Cherry', 'Date']; // Example list of suggestions
+  const [suggestions, setSuggestions] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
   const handleInputChange = (value) => {
-    // Handle the input change event here (e.g., update search results)
-    console.log(`Input value changed to: ${value}`);
+    // Update the input value as the user types
+    setSearchValue(value);
+
+    // Simulate fetching suggestions from a remote API
+    fetchSuggestions(value);
+  };
+
+  const fetchSuggestions = (query) => {
+    // Simulate fetching suggestions from a remote API based on the query
+    // Replace this with your actual API call
+    const apiUrl = `https://api.example.com/suggestions?q=${encodeURIComponent(query)}`;
+
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        // Assuming the API response is an array of suggestion strings
+        setSuggestions(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching suggestions:', error);
+      });
   };
 
   return (
     <div>
       <SearchBar suggestions={suggestions} onChange={handleInputChange} />
+      <p>Search Value: {searchValue}</p>
     </div>
   );
 }
+
+export default App;
 ```
 
 ## Props
