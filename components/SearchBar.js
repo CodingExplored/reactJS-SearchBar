@@ -2,16 +2,23 @@ import React, { useState } from 'react'; // Import React and useState from 'reac
 import './styles/SearchBar.css'; // Import the CSS file for styling.
 
 const SearchBar = ({ suggestions, onChange }) => { // Define a functional component SearchBar that accepts props suggestions and onChange.
+    const [value, setValue ] = useState('')
+
   const handleSuggestionClick = (suggestion) => { // Define a function handleSuggestionClick that takes a suggestion as an argument.
     onChange(suggestion); // Call the onChange function passed as a prop with the selected suggestion.
   };
+
+  const handleChange = (value) => {
+    onChange(value);
+    setValue(value);
+  }
 
   return (
     <div className="searchBar-container"> {/* Create a container div with a CSS class name 'searchBar-container'. */}
       <input
         type="text"
         className="searchBar-input" /* Create an input element with a CSS class name 'searchBar-input'. */
-        value={onChange} /* Bind the input's value to the onChange prop (usually used for input value in a controlled component). */
+        value={handleChange} /* Bind the input's value to the onChange prop (usually used for input value in a controlled component). */
         placeholder="Search..." /* Provide a placeholder text for the input field. */
       />
 
