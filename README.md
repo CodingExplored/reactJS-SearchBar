@@ -17,7 +17,7 @@ The `SearchBar` component is a reusable input field component for search functio
 
 ## Usage
 
-\```jsx
+```jsx
 import SearchBar from './path/to/SearchBar';
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
     </div>
   );
 }
-\```
+```
 
 ## Props
 
