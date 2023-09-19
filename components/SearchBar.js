@@ -2,15 +2,16 @@ import React, { useState } from 'react'; // Import React and useState from 'reac
 import './styles/SearchBar.css'; // Import the CSS file for styling.
 
 const SearchBar = ({ suggestions, onChange }) => { // Define a functional component SearchBar that accepts props suggestions and onChange.
-    const [value, setValue ] = useState('')
+  const [value, setValue ] = useState('')
 
   const handleSuggestionClick = (suggestion) => { // Define a function handleSuggestionClick that takes a suggestion as an argument.
     onChange(suggestion); // Call the onChange function passed as a prop with the selected suggestion.
+    setValue(suggestion); // update local value state to new value
   };
 
   const handleChange = (value) => {
-    onChange(value);
-    setValue(value);
+    onChange(value); // Call the onChange function passed as a prop with the new value 
+    setValue(value); // update local value state to new value
   }
 
   return (
