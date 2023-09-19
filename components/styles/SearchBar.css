@@ -1,16 +1,19 @@
-.search-bar {
+/* Container for the search bar */
+.searchBar-container {
     position: relative;
     width: 300px;
     margin: 0 auto;
   }
   
-  .search-bar [type="text"] {
+  /* Input field for searching */
+  .searchBar-input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
   }
   
-  .suggestions {
+  /* Suggestions list */
+  .searchBar-suggestions {
     position: absolute;
     top: 100%;
     left: 0;
@@ -23,13 +26,15 @@
     margin: 0;
   }
   
-  .suggestions li {
+  /* Individual suggestion items */
+  .searchBar-suggestion {
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.2s;
   }
   
-  .suggestions li:hover {
+  /* Hover effect on suggestions */
+  .searchBar-suggestion:hover {
     background-color: #f3f3f3;
   }
   

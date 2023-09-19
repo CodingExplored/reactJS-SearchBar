@@ -1,56 +1,37 @@
-import React, { useState } from 'react';
-import './SearchBar.css';
+import React, { useState } from 'react'; // Import React and useState from 'react' library.
+import './styles/SearchBar.css'; // Import the CSS file for styling.
 
-const SearchBar = ({ suggestions }) => {
-  // State to track the input value and whether to display suggestions
-  const [inputValue, setInputValue] = useState('');
-  const [showSuggestions, setShowSuggestions] = useState(false);
-
-  // Handle input change event
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    setInputValue(value);
-    // Show suggestions when input value is not empty
-    setShowSuggestions(value.length > 0);
-  };
-
-  // Handle suggestion click event
-  const handleSuggestionClick = (suggestion) => {
-    // Set the selected suggestion as the input value and hide suggestions
-    setInputValue(suggestion);
-    setShowSuggestions(false);
+const SearchBar = ({ suggestions, onChange }) => { // Define a functional component SearchBar that accepts props suggestions and onChange.
+  const handleSuggestionClick = (suggestion) => { // Define a function handleSuggestionClick that takes a suggestion as an argument.
+    onChange(suggestion); // Call the onChange function passed as a prop with the selected suggestion.
   };
 
   return (
-    <div className="search-bar">
-      {/* Input field for searching */}
+    <div className="searchBar-container"> {/* Create a container div with a CSS class name 'searchBar-container'. */}
       <input
         type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Search..."
+        className="searchBar-input" /* Create an input element with a CSS class name 'searchBar-input'. */
+        value={onChange} /* Bind the input's value to the onChange prop (usually used for input value in a controlled component). */
+        placeholder="Search..." /* Provide a placeholder text for the input field. */
       />
 
-      {/* Display suggestions when showSuggestions is true */}
-      {showSuggestions && (
-        <ul className="suggestions">
-          {/* Map through filtered suggestions and create list items */}
-          {suggestions
-            .filter((suggestion) =>
-              suggestion.toLowerCase().includes(inputValue.toLowerCase())
-            )
-            .map((suggestion, index) => (
-              <li
-                key={index}
-                onClick={() => handleSuggestionClick(suggestion)}
-              >
-                {suggestion}
-              </li>
-            ))}
-        </ul>
-      )}
+      <ul className="searchBar-suggestions"> {/* Create an unordered list with a CSS class name 'searchBar-suggestions'. */}
+        {suggestions // Use the 'suggestions' prop to filter and map suggestions.
+          .filter((suggestion) =>
+            suggestion.toLowerCase().includes(onChange.toLowerCase()) // Filter suggestions that match the current input value (case-insensitive).
+          )
+          .map((suggestion, index) => ( // Map each filtered suggestion to a list item.
+            <li
+              key={index} // Set a unique 'key' prop for each list item.
+              className="searchBar-suggestion" // Apply the CSS class name 'searchBar-suggestion' to each list item.
+              onClick={() => handleSuggestionClick(suggestion)} // Attach an 'onClick' event handler to call handleSuggestionClick when a suggestion is clicked.
+            >
+              {suggestion} {/* Display the suggestion text within the list item. */}
+            </li>
+          ))}
+      </ul>
     </div>
   );
 };
 
-export default SearchBar;
+export default SearchBar; // Export the SearchBar component.
