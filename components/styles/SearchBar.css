@@ -1,0 +1,35 @@
+.search-bar {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .search-bar [type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .suggestions li:hover {
+    background-color: #f3f3f3;
+  }
+  
